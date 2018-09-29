@@ -4,7 +4,7 @@ CREATE_DIR=mkdir -p
 REMOVE_DIR=rm -rdf
 
 tests: out
-	$(CC) tests/*.cpp -o $(OUT)/tests
+	$(CC) tests/*.cpp src/*.cpp -Iinclude -o $(OUT)/tests
 	$(OUT)/tests
 
 out:
