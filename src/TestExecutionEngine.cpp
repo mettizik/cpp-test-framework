@@ -1,6 +1,21 @@
 #include <iostream>
 #include <cpptest/TestExecutionEngine.h>
 
+void test::TestExecutionEngine::run_testset(const test_suite &testset)
+{
+    try
+    {
+        for (const auto &testcase : testset)
+        {
+            run_test(testcase);
+        }
+    }
+    catch (const std::exception &ex)
+    {
+        std::cerr << ex.what() << std::endl;
+    }
+}
+
 void test::TestExecutionEngine::run_test(test::test_case testcase)
 {
     try
@@ -10,7 +25,6 @@ void test::TestExecutionEngine::run_test(test::test_case testcase)
     }
     catch (const std::exception &ex)
     {
-        std::cerr << "Test failed! Error: " << ex.what() << std::endl;
         ++_failed_tests_count;
     }
 }
