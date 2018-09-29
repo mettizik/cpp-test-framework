@@ -21,9 +21,41 @@ void print_row(const std::string &name, T value, char headliner = 0, char bottom
     print_ruller(80, bottomliner);
 }
 
+void dummy() {}
+
+void stats_test()
+{
+    test::TestExecutionEngine executor;
+    if (executor.executed_tests() != 0)
+    {
+        throw std::runtime_error("Executed tests is not zero");
+    }
+    if (executor.passed_tests() != 0)
+    {
+        throw std::runtime_error("Passed tests is not 0");
+    }
+    executor.run_test(dummy);
+    if (executor.executed_tests() != 1)
+    {
+        throw std::runtime_error("Executed tests is not 1");
+    }
+    if (executor.passed_tests() != 1)
+    {
+        throw std::runtime_error("Passed tests is not 1");
+    }
+}
+
 int main()
 {
     test::TestExecutionEngine executor;
-    print_row("Total tests", executor.total_tests(), '=', '=');
+    try
+    {
+        executor.run_test(stats_test);
+    }
+    catch (const std::exception &ex)
+    {
+        std::cerr << ex.what() << std::endl;
+    }
+    print_row("Executed tests", executor.executed_tests(), '=', '=');
     return 0;
 }
