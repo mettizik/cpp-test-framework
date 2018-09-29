@@ -11,10 +11,8 @@ class TestExecutionEngine
 {
 public:
   void run_test(test_case testcase);
-  uint64_t executed_tests() const;
   uint64_t passed_tests() const;
 
 private:
-  uint64_t _executed_tests = 0;
 };
 }
