@@ -9,8 +9,7 @@
             "command": "make tests",
             "group": "test",
             "presentation": {
-                "reveal": "always",
-                "panel": "new"
+                "reveal": "always"
             }
         }
     ]
