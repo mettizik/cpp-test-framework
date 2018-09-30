@@ -22,13 +22,20 @@ void print_row(const std::string &name, T value, char headliner = 0, char bottom
 }
 
 test::test_suite engine_tests();
+test::test_suite comparators_tests();
+
+void run_tests(const test::test_suite &suite, const std::string &name)
+{
+    test::TestExecutionEngine executor;
+    executor.run_testset(suite);
+    print_row("Test suite", name, '=');
+    print_row("Passed tests", executor.passed_tests(), '=');
+    print_row("Failed tests", executor.failed_tests(), '-', '=');
+}
 
 int main()
 {
-    test::TestExecutionEngine executor;
-    executor.run_testset(engine_tests());
-    print_row("Test suite", "Execution engine tests", '=');
-    print_row("Passed tests", executor.passed_tests(), '=');
-    print_row("Failed tests", executor.failed_tests(), '-', '=');
+    run_tests(engine_tests(), "Execution engine tests");
+    run_tests(comparators_tests(), "Comparators tests");
     return 0;
 }

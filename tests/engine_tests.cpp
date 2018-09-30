@@ -11,39 +11,27 @@ void failure()
 void no_passed_tests_in_the_begining()
 {
     test::TestExecutionEngine executor;
-    if (executor.passed_tests() != 0)
-    {
-        throw std::runtime_error("Passed tests is not 0");
-    }
+    test::expect_eq(0, executor.passed_tests());
 }
 
 void dummy_test_increases_passeds_count()
 {
     test::TestExecutionEngine executor;
     executor.run_test(dummy);
-    if (executor.passed_tests() != 1)
-    {
-        throw std::runtime_error("Passed tests is not 1");
-    }
+    test::expect_eq(1, executor.passed_tests());
 }
 
 void no_failed_tests_in_the_begining()
 {
     test::TestExecutionEngine executor;
-    if (executor.failed_tests() != 0)
-    {
-        throw std::runtime_error("Failed tests is not 0");
-    }
+    test::expect_eq(0, executor.failed_tests());
 }
 
 void failed_test_increases_faileds_count()
 {
     test::TestExecutionEngine executor;
     executor.run_test(failure);
-    if (executor.failed_tests() != 1)
-    {
-        throw std::runtime_error("Failed tests is not 1");
-    }
+    test::expect_eq(1, executor.failed_tests());
 }
 
 test::test_suite engine_tests()
