@@ -31,6 +31,10 @@ void run_tests(const test::test_suite &suite, const std::string &name)
     print_row("Test suite", name, '=');
     print_row("Passed tests", executor.passed_tests(), '=');
     print_row("Failed tests", executor.failed_tests(), '-', '=');
+    if (executor.failed_tests() > 0)
+    {
+        std::cerr << executor.errors() << std::endl;
+    }
 }
 
 int main()

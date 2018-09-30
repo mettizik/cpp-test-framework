@@ -1,4 +1,5 @@
 #pragma once
+#include <sstream>
 #include <stdint.h>
 #include <vector>
 #include <functional>
@@ -17,8 +18,11 @@ public:
   uint64_t passed_tests() const;
   uint64_t failed_tests() const;
 
+  std::string errors() const;
+
 private:
   uint64_t _passed_tests_count = 0;
   uint64_t _failed_tests_count = 0;
+  std::stringstream _errors_log;
 };
 }
