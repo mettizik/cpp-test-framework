@@ -4,14 +4,14 @@
 
 void expect_eq_does_not_throw_for_equal_values()
 {
-    test::expect_eq(0, 0);
+    expect_eq(0, 0);
 }
 
 void expect_eq__throws_for_not_equal_values()
 {
     try
     {
-        test::expect_eq(1, 0);
+        expect_eq(1, 0);
     }
     catch (const std::exception &)
     {
@@ -24,11 +24,11 @@ void expect_eq_throws_error_with_expected_and_actual_values_described()
 {
     try
     {
-        test::expect_eq(1, 0);
+        expect_eq(1, 0);
     }
     catch (const std::exception &ex)
     {
-        test::expect_eq(std::string(ex.what()), "0 is not equal to 1");
+        expect_eq(std::string(ex.what()), "expect_eq_throws_error_with_expected_and_actual_values_described: 0 is not equal to 1");
     }
 }
 
